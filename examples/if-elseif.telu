@@ -1,0 +1,13 @@
+program if_elseif
+kamus
+    x: integer
+algoritma
+    input(x)
+    if x > 80 then
+        output("A")
+    else if x > 60 then
+        output("B")
+    else
+        output("C")
+    endif
+endalgoritma

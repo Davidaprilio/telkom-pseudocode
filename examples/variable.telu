@@ -1,0 +1,15 @@
+program variable
+
+kamus
+    nama: string
+    umur: integer
+    berat: real
+
+algoritma
+    berat <- 55.5
+    input(nama, umur)
+
+    output("Nama: ", nama)
+    output("Umur: ", umur)
+    output("Berat: ", berat)
+endalgoritma

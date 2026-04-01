@@ -1,0 +1,14 @@
+program loop_for
+
+kamus
+    n, i: integer
+
+algoritma
+    n <- 0
+    input(i)
+
+    for n to i do
+        output("Perulangan ke-", n)
+        n <- n + 1
+    endfor
+endalgoritma

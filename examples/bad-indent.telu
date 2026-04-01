@@ -1,0 +1,11 @@
+program bad_indent
+
+kamus
+    x: integer
+
+algoritma
+    input(x)
+      if x > 0 then
+        output("ok")
+    endif
+endalgoritma

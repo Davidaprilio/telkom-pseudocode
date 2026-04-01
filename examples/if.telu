@@ -1,0 +1,16 @@
+program if_case
+
+kamus
+    nama: string
+    umur: integer
+
+algoritma
+    output("Masukkan nama dan umur:")
+    input(nama, umur)
+
+    if umur >= 17 then
+        output("Halo ", nama, ", status: Dewasa")
+    else
+        output("Halo ", nama, ", status: Belum Dewasa")
+    endif
+endalgoritma
