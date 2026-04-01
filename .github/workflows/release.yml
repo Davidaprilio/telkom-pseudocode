@@ -32,10 +32,29 @@ jobs:
           set -euo pipefail
           mkdir -p dist
 
-          VERSION="${GITHUB_REF_NAME:-main}"
+          VERSION="${GITHUB_REF_NAME:-${GITHUB_HEAD_REF:-dev}}"
           if [[ "${GITHUB_REF:-}" == refs/tags/* ]]; then
             VERSION="${GITHUB_REF_NAME}"
           fi
+
+          BUILD_TARGET=""
+          for candidate in ./cmd/telupsc ./cmd/telucode .; do
+            if go list -f '{{.Name}}' "$candidate" >/dev/null 2>&1; then
+              PKG_NAME="$(go list -f '{{.Name}}' "$candidate")"
+              if [[ "$PKG_NAME" == "main" ]]; then
+                BUILD_TARGET="$candidate"
+                break
+              fi
+            fi
+          done
+
+          if [[ -z "$BUILD_TARGET" ]]; then
+            echo "No main package found. Checked: ./cmd/telupsc ./cmd/telucode ."
+            exit 1
+          fi
+
+          echo "Using build target: $BUILD_TARGET"
+
           TARGETS=(
             "windows amd64"
             "linux amd64"
@@ -55,7 +74,7 @@ jobs:
 
             OUT="dist/telupsc_${VERSION}_${GOOS}_${GOARCH}${EXT}"
             echo "Building $OUT"
-            CGO_ENABLED=0 GOOS="$GOOS" GOARCH="$GOARCH" go build -trimpath -ldflags "-s -w -X main.Version=${VERSION}" -o "$OUT" ./cmd/telupsc
+            CGO_ENABLED=0 GOOS="$GOOS" GOARCH="$GOARCH" go build -trimpath -ldflags "-s -w -X main.Version=${VERSION}" -o "$OUT" "$BUILD_TARGET"
           done
 
       - name: Upload workflow artifacts
