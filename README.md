@@ -1,86 +1,70 @@
 # telupsc (Tel-U Pseudocode Compiler)
 
-CLI untuk mentranspilasi file pseudocode `.telu` ke Go, lalu:
-- langsung dijalankan (`run`),
-- dibuild menjadi binary (`build`), atau
-- disimpan sebagai file Go (`go`).
+`telupsc` adalah CLI Compiler untuk menjalankan pseudocode Telkom University (`.telu`) dengan cara:
+- transpile ke Go,
+- langsung eksekusi,
+- atau build ke binary.
 
-## Fitur
+## Instalasi (Binary Release)
 
-- Command `run`: transpile lalu `go run`.
-- Command `build`: transpile lalu `go build` ke binary.
-- Command `go`: transpile lalu simpan hasil `.go`.
-- Validasi struktur dasar program (`program`, `kamus`, `algoritma`, `endalgoritma`).
-- Validasi indentasi konsisten (gaya python-like):
-  - tidak boleh campur tab dan spasi,
-  - unit indent harus konsisten,
-  - level indent harus sesuai blok.
-
-## Struktur Proyek
-
-- `cmd/telupsc/main.go`: entrypoint CLI (Cobra)
-- `internal/parser/transpiler.go`: parser + transpiler `.telu` -> Go
-- `internal/compiler/compiler.go`: orkestrasi run/build/export
-- `examples/`: kumpulan contoh `.telu`
-- `docs/technical-design.md`: desain teknis detail
-
-## Prasyarat
-
-- Go 1.22+
-
-## Instalasi Dependency
+1. Pergi ke release:
+   - https://github.com/Davidaprilio/telkom-pseudocode/releases
+2. Download binary sesuai OS Anda (.exe untuk Windows, tanpa ekstensi untuk Linux/Mac).
+3. (Opsional) Simpan binary ke folder yang ada di `PATH` agar bisa dipanggil dari terminal mana pun. (Contoh: `C:\Program Files\telupsc\` untuk Windows, `/usr/local/bin/` untuk Linux/Mac).
+4. Verifikasi instalasi:
 
 ```bash
-go mod tidy
+telupsc --help
+# atau
+./telupsc --help
+# atau
+./telupsc.exe --help
 ```
 
-## Menjalankan CLI Tanpa Build
+5. Cek versi:
 
 ```bash
-go run ./cmd/telupsc --help
+telupsc --version
+# atau
+telupsc -v
 ```
 
-## Perintah Utama
+## Cara Pakai
 
-### 1) Run
+### Langsung Jalankan file `.telu`
+siapkan file pseudocode dengan ekstensi `.telu`, lalu jalankan:
+```bash
+telupsc run namafile.telu
+```
 
-Menjalankan `.telu` secara langsung.
+### Build `.telu` menjadi binary
 
 ```bash
-go run ./cmd/telupsc run ./examples/if.telu
+telupsc build namafile.telu
 ```
 
-### 2) Build
-
-Membuat binary langsung dari `.telu`.
+Custom output binary:
 
 ```bash
-go run ./cmd/telupsc build ./examples/loop-for.telu
+telupsc build namafile.telu -o app.exe # Windows
+telupsc build namafile.telu -o app     # Linux/Mac
 ```
 
-Custom nama output binary:
+### Export hasil transpile ke file `.go`
 
 ```bash
-go run ./cmd/telupsc build ./examples/loop-for.telu -o app-loop.exe
+telupsc go namafile.telu
 ```
 
-### 3) Go
-
-Mengekspor hasil transpile menjadi file `.go`.
+Custom output file Go:
 
 ```bash
-go run ./cmd/telupsc go ./examples/hello.telu
+telupsc go namafile.telu -o ./generated/namafile.go
 ```
 
-Custom output file `.go`:
+Jika flag `-o` tidak diisi, output `.go` default ditulis ke current working directory (`pwd`) dengan nama `<nama-file>.go`.
 
-```bash
-go run ./cmd/telupsc go ./examples/hello.telu -o ./generated/hello.go
-```
-
-Jika `-o` tidak diisi, output `.go` default disimpan ke current working directory (`pwd`) dengan nama `<nama-file>.go`.
-
-## Sintaks yang Didukung (Ringkas)
+## Sintaks yang Didukung
 
 - Percabangan:
   - `if <kondisi> then`
@@ -93,34 +77,14 @@ Jika `-o` tidak diisi, output `.go` default disimpan ke current working director
 - I/O:
   - `input(a)` / `input(a, b)`
   - `output(...)`
-- Assignment:
+- Assignment Variabel:
   - `a <- b`
 
-## Contoh Cepat
+  atau lihat di [examples](./examples/).
 
-```text
-program if_case
+## Documentation Development
 
-kamus
-    nama: string
-    umur: integer
+Untuk setup project dari source code, development workflow, dan cara menjalankan project lokal, lihat:
 
-algoritma
-    output("Masukkan nama dan umur:")
-    input(nama, umur)
-
-    if umur >= 17 then
-        output("Dewasa")
-    else
-        output("Belum Dewasa")
-    endif
-endalgoritma
-```
-
-## Inisialisasi Git
-
-Repository ini bisa diinisialisasi dengan:
-
-```bash
-git init
-```
+- [INSTALLATION.md](INSTALLATION.md)
+- [docs/technical-design.md](docs/technical-design.md)
