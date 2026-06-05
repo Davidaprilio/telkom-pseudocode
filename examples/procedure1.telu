@@ -1,0 +1,16 @@
+procedure print()
+algoritma
+    output("I'm hungry")
+    output("get a plate")
+    output("grab any food")
+    output("eat the food")
+endprocedure
+
+program Procedure1
+algoritma
+    print()
+    output("a hours later...")
+    print()
+    output("a hours later...")
+    print()
+endalgoritma

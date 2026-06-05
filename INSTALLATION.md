@@ -2,7 +2,7 @@
 
 Dokumen ini khusus untuk developer yang ingin setup, menjalankan, dan mengembangkan `telupsc` dari source code.
 
-## 1. Prasyarat
+## 1. Required
 
 - Go 1.22 atau lebih baru
 - Git
@@ -18,6 +18,11 @@ cd telkom-pseudocode
 Jika Anda sudah berada di project lokal, cukup pastikan branch aktif sesuai kebutuhan.
 
 ## 3. Install Dependency
+install Makefile dependency:
+#### windows choco (run as admin)
+```sh
+choco install make
+```
 
 ```bash
 go mod tidy

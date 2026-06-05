@@ -4,7 +4,8 @@ else
 BIN := telupsc
 endif
 
-FILE ?= ./examples/if.telu
+ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+FILE := $(if $(ARGS),$(ARGS),./examples/if.telu)
 OUT ?=
 
 .PHONY: help tidy build run build-example go-example clean
