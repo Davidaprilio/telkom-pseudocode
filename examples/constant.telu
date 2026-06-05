@@ -1,0 +1,16 @@
+constant NMAX : integer = 5
+constant PASSING_GRADE : integer = 60
+
+program constant_example
+kamus
+    score : integer
+algoritma
+    score = 75
+    output("Jumlah maksimum data: ", NMAX)
+
+    if score >= PASSING_GRADE then
+        output("Lulus")
+    else
+        output("Tidak lulus")
+    endif
+endprogram

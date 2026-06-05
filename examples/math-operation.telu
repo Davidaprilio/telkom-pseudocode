@@ -1,0 +1,19 @@
+program math_operation_example
+kamus
+    a, b, tambah, kurang, kali, bagi, sisa : integer
+algoritma
+    a = 17
+    b = 5
+
+    tambah = a + b
+    kurang = a - b
+    kali = a * b
+    bagi = a / b
+    sisa = a % b
+
+    output("Tambah: ", tambah)
+    output("Kurang: ", kurang)
+    output("Kali: ", kali)
+    output("Bagi integer: ", bagi)
+    output("Sisa bagi: ", sisa)
+endprogram

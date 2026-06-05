@@ -1,0 +1,19 @@
+program operator_logika_example
+kamus
+    umur : integer
+    punyaKTP, punyaSIM, bolehMasuk : boolean
+algoritma
+    umur = 20
+    punyaKTP = true
+    punyaSIM = false
+
+    bolehMasuk = umur >= 17 && punyaKTP
+
+    if bolehMasuk && !punyaSIM then
+        output("Boleh masuk, tetapi belum punya SIM")
+    else if bolehMasuk || punyaSIM then
+        output("Syarat sebagian terpenuhi")
+    else
+        output("Syarat belum terpenuhi")
+    endif
+endprogram

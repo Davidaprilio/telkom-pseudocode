@@ -1,0 +1,24 @@
+function luasPersegi(sisi : integer) -> integer
+algoritma
+    return sisi * sisi
+endfunction
+
+function isGenap(n : integer) -> boolean
+algoritma
+    return n % 2 == 0
+endfunction
+
+program function_example
+kamus
+    sisi, hasil : integer
+algoritma
+    sisi = 4
+    hasil = luasPersegi(sisi)
+    output("Luas persegi: ", hasil)
+
+    if isGenap(hasil) then
+        output("Hasil bernilai genap")
+    else
+        output("Hasil bernilai ganjil")
+    endif
+endprogram

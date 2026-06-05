@@ -1,0 +1,22 @@
+type Pair <
+    First: integer
+    Second: integer
+>
+
+function jumlahPair(pair : Pair) -> integer
+algoritma
+    return pair.First + pair.Second
+endfunction
+
+program tuple_example
+kamus
+    pair : Pair
+    total : integer
+algoritma
+    pair.First = 10
+    pair.Second = 25
+    total = jumlahPair(pair)
+
+    output("Tuple pair: ", pair.First, ", ", pair.Second)
+    output("Jumlah tuple: ", total)
+endprogram

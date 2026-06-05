@@ -1,0 +1,16 @@
+type Student <
+    Nim: string
+    Name: string
+    Grade: integer
+>
+
+program struct_example
+kamus
+    student : Student
+algoritma
+    student.Nim = "130001"
+    student.Name = "Siti"
+    student.Grade = 92
+
+    output(student.Nim, " - ", student.Name, " - ", student.Grade)
+endprogram

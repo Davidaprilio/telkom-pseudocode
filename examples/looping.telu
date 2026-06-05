@@ -1,0 +1,18 @@
+program looping_example
+kamus
+    i, total : integer
+algoritma
+    i = 1
+    for i to 5 do
+        output("For ke-", i)
+    endfor
+
+    i = 1
+    total = 0
+    while i <= 5 do
+        total = total + i
+        i = i + 1
+    endwhile
+
+    output("Total 1 sampai 5: ", total)
+endprogram

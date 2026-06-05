@@ -1,0 +1,21 @@
+procedure salam(in nama : string)
+algoritma
+    output("Halo, ", nama)
+endprocedure
+
+procedure tampilkanNilai(in nama : string, in nilai : integer)
+algoritma
+    output("Nilai ", nama, ": ", nilai)
+endprocedure
+
+program procedure_example
+kamus
+    nama : string
+    nilai : integer
+algoritma
+    nama = "Budi"
+    nilai = 85
+
+    salam(nama)
+    tampilkanNilai(nama, nilai)
+endprogram
